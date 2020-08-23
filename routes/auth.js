@@ -18,3 +18,5 @@ router.get(
     successRedirect: "/dashboard",
   })
 );
+
+module.exports = router;
