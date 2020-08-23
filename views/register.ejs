@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-6 m-auto">
+        <div class="text-center my-5">
+            <h1>Stories Node.js App</h1>
+            <p>by Ahmad Tarabein</p>
+            <h1 style="margin-top: -5px;"><i class="fas fa-book" style="color: black"></i>
+            </h1>
+            <h2>Registeration</h2>
+            <div class="my-3">
+                <div><a href="/auth/google" class="btn btn-danger btn-lg btn-block"><i class="fab fa-google left"></i>
+                        Register with
+                        google</a>
+                </div>
+                <h5 class="my-1">Or</h5>
+
+                <form action="/users/register" method="POST">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="name" class="form-control" placeholder="Name" aria-label="Username"
+                            aria-describedby="basic-addon1" id="name" name="name"
+                            value="<% typeof name != 'undefined' ? name : '' %>" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" placeholder="Email" aria-label="Username"
+                            aria-describedby="basic-addon1" id="email" name="email"
+                            value="<% typeof email != 'undefined' ? email : '' %>" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Password" aria-label="Username"
+                            aria-describedby="basic-addon1" id="password" name="password"
+                            value="<% typeof password != 'undefined' ? password : '' %>" />
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Confirm password" aria-label="Username"
+                            aria-describedby="basic-addon1" id="password2" name="password2"
+                            value="<% typeof password2 != 'undefined' ? password2 : '' %>" />
+                    </div>
+
+
+                    <button class="btn btn-success btn-lg" type="submit" style="width: 40%;">Register</button>
+                </form>
+                <div class="border my-2 border-dark" style="border-width: 2px !important;"></div>
+                <div class="my-1">
+                    <a href="/" style="color: white; font-size: large !important;">Already registered? Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
