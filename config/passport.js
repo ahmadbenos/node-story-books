@@ -7,12 +7,25 @@ const myClientSecret = require("./keys").clientSecret;
 const User = require("../models/User");
 
 // passport google authentication
-/* module.exports = function (passport) {
+module.exports = function (passport) {
   passport.use(
     new GoogleStrategy({
       clientID: myClientId,
       clientSecret: myClientSecret,
       callbackURL: "/auth/google/callback",
-    })
+    }),
+    (accessToken, refreshToken, profile, done) => {
+      console.log(profile);
+    }
   );
-}; */
+
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+      done(err, user);
+    });
+  });
+};

@@ -7,7 +7,7 @@ const passport = require("passport");
 const session = require("express-session");
 
 //! passport auth
-// require("./config/passport")(passport);
+require("./config/passport")(passport);
 
 //! Connect to MongoDB
 const db = require("./config/keys").MongoURI;
@@ -44,6 +44,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //! routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
+app.use("/auth", require("./routes/auth"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
