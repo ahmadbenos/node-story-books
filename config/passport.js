@@ -1,5 +1,5 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const mongoose = require("mongoose");
+
 const myClientId = require("./keys").clientID;
 const myClientSecret = require("./keys").clientSecret;
 
@@ -27,15 +27,27 @@ module.exports = function (passport) {
         User.findOne({ googleId: profile.id })
           .then((user) => {
             if (user) {
-              return done(null, user);
+              done(null, user);
             } else {
-              newUser.save().then(() => console.log("user saved!"));
-              return done(null, user);
+              newUser.save().then((userd) => {
+                done(null, userd);
+              });
             }
           })
-          .catch((err) => {
-            if (err) console.log(err);
-          });
+          .catch((err) => console.log(err));
+
+        //  try {
+        //    let user = await User.findOne({ googleId: profile.id });
+
+        //    if (user) {
+        //      done(null, user);
+        //    } else {
+        //      user = await User.create(newUser);
+        //      done(null, user);
+        //    }
+        //  } catch (err) {
+        //  console.error(err);
+        //  }
       }
     )
   );

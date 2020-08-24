@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated, forwardAuth } = require("../config/checkAuth");
 const User = require("../models/User");
+const Story = require("../models/Story");
 
 //? welcome page
 router.get("/", forwardAuth, (req, res) => {
@@ -10,10 +11,15 @@ router.get("/", forwardAuth, (req, res) => {
 
 //? dashboard page
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
-  res.render("dashboard", {
-    layout: "inlayout",
-    name: req.user.firstName,
-  });
+  Story.find({ user: req.user.id })
+    .then((stories) => {
+      res.render("dashboard", {
+        layout: "inlayout",
+        name: req.user.firstName,
+        stories,
+      });
+    })
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;
