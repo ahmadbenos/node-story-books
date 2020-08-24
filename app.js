@@ -5,6 +5,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 //! passport auth
 require("./config/passport")(passport);
@@ -31,6 +32,7 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 
