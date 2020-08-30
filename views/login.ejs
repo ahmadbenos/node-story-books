@@ -6,6 +6,25 @@
             <h1 style="margin-top: -5px;"><i class="fas fa-book" style="color: black"></i>
             </h1>
             <h2>Email Login</h2>
+
+            <% if(success_msg != ""){ %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= success_msg %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% } %>
+
+            <% if(error != ""){ %>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <%= error %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% } %>
+
             <div class="my-3">
                 <form action="/users/login" method="POST">
                     <div class="input-group mb-3">

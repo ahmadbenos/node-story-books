@@ -5,7 +5,7 @@ const StorySchema = new mongoose.Schema({
   body: { type: String, required: true },
   status: { type: String, default: "public", enum: ["public", "private"] },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  createdAt: { type: Date, default: Date.now() },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const Story = mongoose.model("Story", StorySchema);

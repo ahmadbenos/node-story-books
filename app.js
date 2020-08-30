@@ -5,6 +5,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
+const flash = require("connect-flash");
 const MongoStore = require("connect-mongo")(session);
 
 //! passport auth
@@ -39,6 +40,17 @@ app.use(
 //! intialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+//! initialize flash
+app.use(flash());
+
+//global vars
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  next();
+});
 
 //! static folder
 app.use(express.static(path.join(__dirname, "public")));

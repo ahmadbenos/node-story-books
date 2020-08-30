@@ -22,15 +22,32 @@
 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
 <div id="main" style="background-image: linear-gradient(to left,#667eea, #764ba2);">
     <div class="container">
+
+        <% if(success_msg != ""){ %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= success_msg %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } %>
+
         <h2 style="color: white;" class="animate__animated animate__fadeIn animate__delay-1s">Weclome back
             <%= name %>!
         </h2>
-        <p style="color: white;" class="animate__animated animate__fadeIn animate__delay-2s">Here are you stories:</p>
-        <% if (stories) {  %>
+        <h4 style="color: white;" class="animate__animated animate__fadeIn animate__delay-2s">Here are you stories:</h4>
+        <% if (stories.length > 0) {  %>
+
 
         <% } else {  %>
-        <p style="color: white;">you have not created any
-            story yet!</p>
+        <div class="alert alert-warning alert-dismissible fade show animate__animated animate__fadeIn animate__delay-3s"
+            role="alert">
+            <strong>you have not created any story yet!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
         <% } %>
     </div>
 

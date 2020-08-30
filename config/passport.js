@@ -1,4 +1,6 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcryptjs");
 
 const myClientId = require("./keys").clientID;
 const myClientSecret = require("./keys").clientSecret;
@@ -18,6 +20,7 @@ module.exports = function (passport) {
       (accessToken, refreshToken, profile, done) => {
         const newUser = new User({
           googleId: profile.id,
+          email: profile._json.email,
           displayName: profile.displayName,
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
@@ -35,19 +38,68 @@ module.exports = function (passport) {
             }
           })
           .catch((err) => console.log(err));
+      }
+    )
+  );
 
-        //  try {
-        //    let user = await User.findOne({ googleId: profile.id });
+  passport.use(
+    "googleReg",
+    new GoogleStrategy(
+      {
+        clientID: myClientId,
+        clientSecret: myClientSecret,
+        callbackURL: "/users/google/callback",
+      },
+      (accessToken, refreshToken, profile, done) => {
+        const newUser = new User({
+          googleId: profile.id,
+          email: profile._json.email,
+          displayName: profile.displayName,
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+          image: profile.photos[0].value,
+        });
 
-        //    if (user) {
-        //      done(null, user);
-        //    } else {
-        //      user = await User.create(newUser);
-        //      done(null, user);
-        //    }
-        //  } catch (err) {
-        //  console.error(err);
-        //  }
+        User.findOne({ googleId: profile.id })
+          .then((user) => {
+            if (user) {
+              done(null, false, {
+                message:
+                  "You are already registered using this google account!",
+              });
+            } else {
+              newUser.save().then((userd) => {
+                done(null, userd);
+              });
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    )
+  );
+
+  passport.use(
+    new LocalStrategy(
+      { usernameField: "email", passwordField: "password" },
+      (email, password, done) => {
+        //Match User
+        User.findOne({ email: email })
+          .then((user) => {
+            if (!user) {
+              return done(null, false, { message: "Email not registered!" });
+            }
+            //Match Password
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+              if (err) throw err;
+              if (isMatch) {
+                return done(null, user);
+              } else {
+                return done(null, false, { message: "Password incorrect!" });
+              }
+            });
+          })
+
+          .catch((err) => console.log(err));
       }
     )
   );
