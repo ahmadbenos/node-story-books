@@ -1,0 +1,8 @@
+.btn-group .btn-fab {
+  position: fixed !important;
+  right: 35px;
+}
+#addbtn {
+  bottom: 30px;
+  transform: scale(1.6);
+}
