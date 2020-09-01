@@ -14,6 +14,21 @@ router.get("/add", ensureAuthenticated, (req, res) => {
 //? process story submission
 router.post("/", ensureAuthenticated, (req, res) => {
   console.log(req.body);
+  const newStory = new Story({
+    title: req.body.title,
+    body: req.body.body,
+    status: req.body.status,
+    user: req.user.id,
+  });
+
+  newStory
+    .save()
+    .then(() => {
+      res.redirect("/dashboard");
+    })
+    .catch((err) => {
+      if (err) console.log(err);
+    });
 });
 
 module.exports = router;

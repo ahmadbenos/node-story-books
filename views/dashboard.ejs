@@ -38,6 +38,34 @@
         <h4 style="color: white;" class="animate__animated animate__fadeIn animate__delay-2s">Here are you stories:</h4>
         <% if (stories.length > 0) {  %>
 
+        <table class="my-4 table table-striped animate__animated animate__fadeIn animate__delay-3s"
+            style="background: white;">
+            <thead class="thead-dark">
+                <tr>
+
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%  stories.forEach(function(story){ %>
+
+                <td> <%= story.title %> </td>
+                <td><%= story.createdAt %> </td>
+                <td><%= story.status %> </td>
+                </tr>
+
+                <%  }) %>
+
+                <!--  <tr>
+                    <td> <%= stories[0].title %> </td>
+                    <td><%= stories[0].createdAt %> </td>
+                    <td><%= stories[0].status %> </td>
+                </tr> -->
+            </tbody>
+        </table>
+
 
         <% } else {  %>
         <div class="alert alert-warning alert-dismissible fade show animate__animated animate__fadeIn animate__delay-3s"
