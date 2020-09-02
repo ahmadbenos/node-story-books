@@ -1,6 +1,6 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">Public Stories</a>
+    <a href="/stories">Public Stories</a>
     <a href="/dashboard">My Stories</a>
     <a href="/users/logout">Logout</a>
 </div>
@@ -50,19 +50,11 @@
             </thead>
             <tbody>
                 <%  stories.forEach(function(story){ %>
-
                 <td> <%= story.title %> </td>
-                <td><%= story.createdAt %> </td>
+                <td><%= moment(story.createdAt).format('lll') %> </td>
                 <td><%= story.status %> </td>
                 </tr>
-
                 <%  }) %>
-
-                <!--  <tr>
-                    <td> <%= stories[0].title %> </td>
-                    <td><%= stories[0].createdAt %> </td>
-                    <td><%= stories[0].status %> </td>
-                </tr> -->
             </tbody>
         </table>
 

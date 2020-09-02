@@ -19,6 +19,7 @@ router.post("/", ensureAuthenticated, (req, res) => {
     body: req.body.body,
     status: req.body.status,
     user: req.user.id,
+    createdAt: Date.now(),
   });
 
   newStory
@@ -29,6 +30,13 @@ router.post("/", ensureAuthenticated, (req, res) => {
     .catch((err) => {
       if (err) console.log(err);
     });
+});
+
+//? show public stories
+router.get("/", ensureAuthenticated, (req, res) => {
+  res.render("public_stories", {
+    layout: "pubLayout",
+  });
 });
 
 module.exports = router;

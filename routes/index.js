@@ -3,6 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated, forwardAuth } = require("../config/checkAuth");
 const User = require("../models/User");
 const Story = require("../models/Story");
+const moment = require("moment");
 
 //? welcome page
 router.get("/", forwardAuth, (req, res) => {
@@ -17,6 +18,7 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
         layout: "inlayout",
         name: req.user.firstName,
         stories,
+        moment,
       });
     })
     .catch((err) => console.log(err));
