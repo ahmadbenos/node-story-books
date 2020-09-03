@@ -44,9 +44,9 @@
                         <hr>
                         <div class="text-center">
                             <button class="btn btn-dark my-1">Read More</button>
-                            <% %>
-                            <button class="btn btn-danger">Edit</button>
-                            <% %>
+                            <% if(story.user._id == myUser) { %>
+                            <button class="btn btn-danger">Edit Post</button>
+                            <% } %>
                         </div>
 
                         <!-- <div class="text-center userbg rounded-pill"><a href="#" class="btn"><img

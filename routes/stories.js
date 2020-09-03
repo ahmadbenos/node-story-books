@@ -40,6 +40,7 @@ router.get("/", ensureAuthenticated, (req, res) => {
       res.render("public_stories", {
         layout: "pubLayout",
         stories,
+        myUser: req.user.id,
       });
     })
     .catch((err) => {
