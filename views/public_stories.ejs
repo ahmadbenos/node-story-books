@@ -23,55 +23,65 @@
 <div id="main" style="background-image: linear-gradient(to left,#667eea, #764ba2);">
     <div class="container">
 
-        <div class="card-deck">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+        <div class="row myGrid">
+            <% stories.forEach(function(story){ %>
 
-                    <div class="text-center">
-                        <a href="#">
-                            <div class="chip">
-                                <img src="https://lh3.googleusercontent.com/a-/AOh14Gj07ovBA5rvPW7w90kJll5j3_oqFbc1hpADM4F91w"
-                                    alt="Person" width="96" height="96">
-                                John Doe
-                            </div>
-                        </a>
+            <div class="col-md-4 my-2">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"><%= story.title  %></h5>
+                        <p class="card-text cardtext">
+                            <%= story.body.replace(/<(?:.|\n)*?>/gm, '').substr(0, 145) + '...' %> </p>
+
+                        <div class="text-center">
+                            <a href="#">
+                                <div class="chip">
+                                    <img src="<%- story.user.image %>" alt="Person" width="96" height="96">
+                                    <%= story.user.displayName %>
+                                </div>
+                            </a>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <button class="btn btn-dark my-1">Read More</button>
+                            <% %>
+                            <button class="btn btn-danger">Edit</button>
+                            <% %>
+                        </div>
+
+                        <!-- <div class="text-center userbg rounded-pill"><a href="#" class="btn"><img
+                                        class="img-fluid rounded-circle myImg"
+                                        src="https://lh3.googleusercontent.com/a-/AOh14Gj07ovBA5rvPW7w90kJll5j3_oqFbc1hpADM4F91w"
+                                        alt="profile pic"> <span>User</span>
+                                </a></div> -->
+
                     </div>
-                    <hr>
-                    <div class="text-center">
-                        <button class="btn btn-dark">Read More</button>
+                </div>
+
+            </div>
+            <% }) %>
+            <!--  <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
-
-                    <!-- <div class="text-center userbg rounded-pill"><a href="#" class="btn"><img
-                                class="img-fluid rounded-circle myImg"
-                                src="https://lh3.googleusercontent.com/a-/AOh14Gj07ovBA5rvPW7w90kJll5j3_oqFbc1hpADM4F91w"
-                                alt="profile pic"> <span>User</span>
-                        </a></div> -->
-
                 </div>
-            </div>
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
-                    </p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This card has even longer content than the first to show that equal height
-                        action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional content. This card has even longer content than the first to show that equal height
+                            action.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                 </div> -->
         </div>
+
+
 
     </div>
 

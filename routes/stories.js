@@ -34,9 +34,17 @@ router.post("/", ensureAuthenticated, (req, res) => {
 
 //? show public stories
 router.get("/", ensureAuthenticated, (req, res) => {
-  res.render("public_stories", {
-    layout: "pubLayout",
-  });
+  Story.find({ status: "public" })
+    .populate("user")
+    .then((stories) => {
+      res.render("public_stories", {
+        layout: "pubLayout",
+        stories,
+      });
+    })
+    .catch((err) => {
+      if (err) console.log(err);
+    });
 });
 
 module.exports = router;
