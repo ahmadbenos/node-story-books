@@ -36,6 +36,7 @@ router.post("/", ensureAuthenticated, (req, res) => {
 router.get("/", ensureAuthenticated, (req, res) => {
   Story.find({ status: "public" })
     .populate("user")
+    .sort({ createdAt: "desc" })
     .then((stories) => {
       res.render("public_stories", {
         layout: "pubLayout",
@@ -46,6 +47,13 @@ router.get("/", ensureAuthenticated, (req, res) => {
     .catch((err) => {
       if (err) console.log(err);
     });
+});
+
+//? show specific story
+router.get("/spec", ensureAuthenticated, (req, res) => {
+  res.render("spec_story", {
+    layout: "specLayout",
+  });
 });
 
 module.exports = router;

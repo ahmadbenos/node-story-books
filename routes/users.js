@@ -59,6 +59,7 @@ router.post("/register", (req, res) => {
           firstName: displayName,
           lastName: displayName,
           googleId: Math.floor(Math.random() * 1000000000000000000000),
+          image: "https://i.stack.imgur.com/YaL3s.jpg",
         });
 
         bcrypt.genSalt(10, (err, salt) => {
