@@ -46,6 +46,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Date</th>
                     <th scope="col">Status</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -53,6 +54,11 @@
                 <td> <%= story.title %> </td>
                 <td><%= moment(story.createdAt).format('lll') %> </td>
                 <td><%= story.status %> </td>
+                <td><a href="/stories/edit/<%- story._id %>" style="font-size: 22px !important;"><i
+                            class="fas fa-edit"></i></a>&nbsp;<a
+                        style="font-size: 22px !important; color: #d13732 !important;"
+                        href="/stories/delete/<%- story._id %>"><i class="fas fa-trash"></i></a>
+                </td>
                 </tr>
                 <%  }) %>
             </tbody>

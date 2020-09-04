@@ -43,9 +43,9 @@
                         </div>
                         <hr>
                         <div class="text-center">
-                            <button class="btn btn-dark my-1">Read More</button>
+                            <a class="btn btn-dark my-1">Read More</a>
                             <% if(story.user._id == myUser) { %>
-                            <button class="btn btn-danger">Edit Post</button>
+                            <a class="btn btn-danger" href="/stories/edit/<%- story._id %>">Edit Post</a>
                             <% } %>
                         </div>
 

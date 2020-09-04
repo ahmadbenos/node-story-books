@@ -49,6 +49,46 @@ router.get("/", ensureAuthenticated, (req, res) => {
     });
 });
 
+//? edit story
+router.get("/edit/:id", ensureAuthenticated, (req, res) => {
+  Story.findOne({ _id: req.params.id })
+    .then((story) => {
+      if (!story) {
+        res.send("story doesnt exist!");
+      }
+
+      if (story.user != req.user.id) {
+        res.redirect("/stories");
+      } else {
+        res.render("edit", {
+          layout: "addLayout",
+          story,
+        });
+      }
+    })
+    .catch((err) => {
+      if (err) console.log(err);
+    });
+});
+
+//? proccess edit request
+router.put("/edit/:id", ensureAuthenticated, (req, res) => {
+  Story.findById(req.params.id).then((story) => {
+    if (!story) {
+      res.send("story doesnt exist!");
+    }
+
+    if (story.user != req.user.id) {
+      res.redirect("/stories");
+    } else {
+      Story.findOneAndUpdate({ _id: req.params.id }, req.body, {
+        new: true,
+        runValidators: true,
+      }).then((story) => res.redirect("/dashboard"));
+    }
+  });
+});
+
 //? show specific story
 router.get("/spec", ensureAuthenticated, (req, res) => {
   res.render("spec_story", {
