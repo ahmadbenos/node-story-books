@@ -82,11 +82,24 @@ router.put("/edit/:id", ensureAuthenticated, (req, res) => {
       res.redirect("/stories");
     } else {
       Story.findOneAndUpdate({ _id: req.params.id }, req.body, {
+        useFindAndModify: false,
         new: true,
         runValidators: true,
       }).then((story) => res.redirect("/dashboard"));
     }
   });
+});
+
+//? delete story
+router.delete("/delete/:id", ensureAuthenticated, (req, res) => {
+  Story.remove({ _id: req.params.id })
+    .then(() => res.redirect("/dashboard"))
+    .catch((err) => {
+      if (err) {
+        console.log(err);
+        res.send("Unexpected error!");
+      }
+    });
 });
 
 //? show specific story
