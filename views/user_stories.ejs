@@ -12,7 +12,7 @@
                     class="fas fa-bars"></i></button></div>
 
         <div class="text-center">
-            <h1 style="color: white;">Public Stories</h1>
+            <h1 style="color: white;"></h1>
         </div>
         <div class="bg-dark"> &nbsp; &nbsp; &nbsp;</div>
     </div>
@@ -20,13 +20,14 @@
 
 
 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<div id="main" style="background-image: linear-gradient(to left,#667eea, #764ba2);">
+<div id="main">
     <div class="container">
-
-        <div class="row myGrid">
+        <h2 class="display-4" style="font-size: 40px !important;"><%= stories[0].user.displayName %>'s public stories
+        </h2>
+        <div class="row">
             <% stories.forEach(function(story){ %>
 
-            <div class="col-md-4 my-2">
+            <div class="col-xs-6 col-md-4  my-2">
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title text-center"><%= story.title  %></h5>
@@ -81,10 +82,6 @@
                  </div> -->
         </div>
 
-
-
     </div>
-
-
 
 </div>

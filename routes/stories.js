@@ -115,4 +115,23 @@ router.get("/:id", ensureAuthenticated, (req, res) => {
     });
 });
 
+//? show a user's public stories
+router.get("/user/:id", ensureAuthenticated, (req, res) => {
+  Story.find({ user: req.params.id, status: "public" })
+    .populate("user")
+    .then((stories) => {
+      res.render("user_stories", {
+        layout: "specLayout",
+        stories,
+        myUser: req.user.id,
+      });
+    })
+    .catch((err) => {
+      if (err) {
+        console.log(err);
+        res.send("Unexpected error");
+      }
+    });
+});
+
 module.exports = router;
