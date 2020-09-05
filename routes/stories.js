@@ -3,6 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated, forwardAuth } = require("../config/checkAuth");
 const User = require("../models/User");
 const Story = require("../models/Story");
+const moment = require("moment");
 
 //? add a story
 router.get("/add", ensureAuthenticated, (req, res) => {
@@ -13,7 +14,6 @@ router.get("/add", ensureAuthenticated, (req, res) => {
 
 //? process story submission
 router.post("/", ensureAuthenticated, (req, res) => {
-  console.log(req.body);
   const newStory = new Story({
     title: req.body.title,
     body: req.body.body,
@@ -103,10 +103,16 @@ router.delete("/delete/:id", ensureAuthenticated, (req, res) => {
 });
 
 //? show specific story
-router.get("/spec", ensureAuthenticated, (req, res) => {
-  res.render("spec_story", {
-    layout: "specLayout",
-  });
+router.get("/:id", ensureAuthenticated, (req, res) => {
+  Story.findById(req.params.id)
+    .populate("user")
+    .then((story) => {
+      res.render("spec_story", {
+        layout: "specLayout",
+        story,
+        moment,
+      });
+    });
 });
 
 module.exports = router;

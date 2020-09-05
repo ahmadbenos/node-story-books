@@ -1,7 +1,7 @@
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/stories">Public Stories</a>
-    <a href="/dashboard">My Stories</a>
+    <a href="/dashboard">Dashboard</a>
     <a href="/users/logout">Logout</a>
 </div>
 
@@ -43,7 +43,7 @@
                         </div>
                         <hr>
                         <div class="text-center">
-                            <a class="btn btn-dark my-1">Read More</a>
+                            <a class="btn btn-dark my-1" href="/stories/<%- story._id %>">Read More</a>
                             <% if(story.user._id == myUser) { %>
                             <a class="btn btn-danger" href="/stories/edit/<%- story._id %>">Edit Post</a>
                             <% } %>
