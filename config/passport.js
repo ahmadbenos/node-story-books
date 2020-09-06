@@ -42,6 +42,7 @@ module.exports = function (passport) {
     )
   );
 
+  // passport google registeration
   passport.use(
     "googleReg",
     new GoogleStrategy(
@@ -78,6 +79,7 @@ module.exports = function (passport) {
     )
   );
 
+  // passport local strategy(email signup/login)
   passport.use(
     new LocalStrategy(
       { usernameField: "email", passwordField: "password" },
@@ -104,10 +106,12 @@ module.exports = function (passport) {
     )
   );
 
+  // serialize user
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
 
+  // deserialize user
   passport.deserializeUser((id, done) => {
     User.findById(id, (err, user) => {
       done(err, user);

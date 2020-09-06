@@ -12,6 +12,7 @@ router.get("/", forwardAuth, (req, res) => {
 
 //? dashboard page
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
+  // get all stories for logged in user
   Story.find({ user: req.user.id })
     .then((stories) => {
       res.render("dashboard", {

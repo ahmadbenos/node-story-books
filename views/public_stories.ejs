@@ -31,6 +31,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-center"><%= story.title  %></h5>
                         <p class="card-text cardtext">
+                            <!-- remove html tags and limit the number of characters shown -->
                             <%= story.body.replace(/<(?:.|\n)*?>/gm, '').substr(0, 145) + '...' %> </p>
 
                         <div class="text-center">
@@ -49,36 +50,13 @@
                             <% } %>
                         </div>
 
-                        <!-- <div class="text-center userbg rounded-pill"><a href="#" class="btn"><img
-                                        class="img-fluid rounded-circle myImg"
-                                        src="https://lh3.googleusercontent.com/a-/AOh14Gj07ovBA5rvPW7w90kJll5j3_oqFbc1hpADM4F91w"
-                                        alt="profile pic"> <span>User</span>
-                                </a></div> -->
 
                     </div>
                 </div>
 
             </div>
             <% }) %>
-            <!--  <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
-                        </p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This card has even longer content than the first to show that equal height
-                            action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                 </div> -->
+
         </div>
 
 

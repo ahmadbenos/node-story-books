@@ -26,11 +26,13 @@ only want the sidenav to sit on top of the page -->
 
         <form action="/stories" method="POST">
             <div class="form-group">
+                <!-- Story title -->
                 <label for="title" style="font-size: 26px !important;">Title</label>
                 <input type="text" class="form-control" placeholder="Add story title" id="title" name="title">
             </div>
             <br>
             <div class="form-group">
+                <!-- story status -->
                 <label for="status" style="font-size: 26px !important;">Status</label>
                 <select data-style="btn-primary" class="selectpicker show-tick form-control" id="status" name="status">
                     <option data-icon="fa fa-users" value="public">Public</option>
@@ -39,6 +41,7 @@ only want the sidenav to sit on top of the page -->
             </div>
             <br>
             <div class="form-group">
+                <!-- story body -->
                 <label style="font-size: 26px !important;">Talk about your story:</label>
                 <textarea name="body" id="body" class="form-control"></textarea>
             </div>

@@ -20,6 +20,7 @@ router.post("/register", (req, res) => {
   const { displayName, email, password, password2 } = req.body;
   let errors = [];
 
+  // cases for errors
   if (!displayName || !email || !password || !password2) {
     errors.push({ msg: "missing fields" });
   }
@@ -31,7 +32,7 @@ router.post("/register", (req, res) => {
   if (password.length < 6 && password) {
     errors.push({ msg: "password must be at least 6 characters long" });
   }
-
+  // if there's an error
   if (errors.length > 0) {
     res.render("register", {
       errors,
@@ -40,6 +41,7 @@ router.post("/register", (req, res) => {
       password,
       password2,
     });
+    //if there is no user registeration error
   } else {
     User.findOne({ email: email }).then((user) => {
       if (user) {
@@ -62,6 +64,7 @@ router.post("/register", (req, res) => {
           image: "https://i.stack.imgur.com/YaL3s.jpg",
         });
 
+        // hash the password
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) {
@@ -91,6 +94,7 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
+//? google handle with email scope
 router.get(
   "/google",
   passport.authenticate("googleReg", {
@@ -98,6 +102,7 @@ router.get(
   })
 );
 
+//? google callback handle
 router.get(
   "/google/callback",
   passport.authenticate("googleReg", {
