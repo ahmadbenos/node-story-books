@@ -20,6 +20,8 @@ This is a web app created using node.js and MongoDB for database. Please make su
 
 - ability to edit the privacy of your stories
 
+- Password encryption
+
 - CSS animations
 
 - and more...
